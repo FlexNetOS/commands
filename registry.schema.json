@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FlexNetOS/commands/registry.schema.json",
+  "title": "commands registry",
+  "description": "Catalog of standalone Claude Code slash commands. registry.json is the source of truth; scripts/validate.py enforces it. See template_hub/docs/hub-standard.md.",
+  "type": "object",
+  "required": ["version", "updated", "org", "hub", "commands"],
+  "properties": {
+    "schema": { "type": "string" },
+    "version": { "type": "string" },
+    "updated": { "type": "string" },
+    "org": { "type": "string" },
+    "hub": { "const": "commands" },
+    "description": { "type": "string" },
+    "commands": { "type": "array", "items": { "$ref": "#/$defs/command" } }
+  },
+  "$defs": {
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "displayName", "category", "status", "summary", "commandName", "doc"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "displayName": { "type": "string" },
+        "category": { "enum": ["dev", "review", "git", "test", "docs", "ops", "meta"] },
+        "status": { "enum": ["stable", "beta", "experimental", "deprecated"] },
+        "summary": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "commandName": { "type": "string", "description": "The /name without the leading slash." },
+        "argsHint": { "type": "string" },
+        "model": { "type": "string" },
+        "allowedTools": { "type": "array", "items": { "type": "string" } },
+        "scriptPath": { "type": "string" },
+        "doc": { "type": "string" },
+        "snippet": { "type": "string" },
+        "upstream": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
