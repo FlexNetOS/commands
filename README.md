@@ -21,7 +21,7 @@ _No entries yet — v0.1.0._
 
 | Command | Category | Args | Status | Doc |
 |---------|----------|------|--------|-----|
-| _(none)_ | | | | |
+| `/meta-analyze` | meta | `[target_repo]` | experimental | [`entries/meta-analyze.md`](entries/meta-analyze.md) |
 
 ## Entry shape
 
